@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/foundation.dart';
+import 'dart:async';
+import 'package:path_provider/path_provider.dart';
 
 
 void main() => runApp(MyApp());
@@ -13,43 +16,84 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             title: 'Flutter Demo',
             theme: ThemeData(primarySwatch: Colors.red),
-            home: MyHomePage(title: 'Flutter Demo Home Page WOO!'),
+            home: MyHomePage(title: 'Flutter Practice!', storage: CounterStorage()),
         );
+    }
+}
+
+class CounterStorage {
+    
+    // Gets the working directory
+    Future<String> get _localPath async {
+        final directory = await getApplicationDocumentsDirectory();
+        return directory.path;
+    }
+    
+    // Get the counter file
+    Future<File> get _localFile async {
+        final path = await _localPath;
+        return File('$path/counter.txt');
+    }
+    
+    // Read the counter file
+    Future<int> readCounter() async {
+        // If we find a file, return the number
+        try {
+            final file = await _localFile;
+            String contents = await file.readAsString();
+            return int.parse(contents);    
+        // Else, return 0
+        } catch(e) {
+            return 0;
+        }
+    }
+    
+    // Write to the counter file
+    Future<File> writeCounter(int counter) async {
+        final file = await _localFile;
+        return file.writeAsString('$counter');
     }
 }
 
 /// =================================================
 /// A home page with a floating button that creates list buttons which navigates to the second page
 class MyHomePage extends StatefulWidget {
-    MyHomePage({Key key, this.title}) : super(key: key);
-
-    // This widget is the home page of your application. It is stateful, meaning
-    // that it has a State object (defined below) that contains fields that affect
-    // how it looks.
-
-    // This class is the configuration for the state. It holds the values (in this
-    // case the title) provided by the parent (in this case the App widget) and
-    // used by the build method of the State. Fields in a Widget subclass are
-    // always marked "final".
-
     final String title;
-
+    final CounterStorage storage;
+    
+    MyHomePage({Key key, this.title, @required this.storage}) : super(key: key);
+    
     @override
     _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
     int _counter = 0;
-
-    void _incrementCounter() {
+    
+    // When we initialise the app, counter is set to the stored number
+    @override
+    void initState() {
+        super.initState();
+        widget.storage.readCounter().then((int value) {
+            setState((){
+                _counter = value;
+            });
+        });
+    }
+    
+    Future<File> _incrementCounter() async {
         setState(() {
         // This call to setState tells the Flutter framework that something has
         // changed in this State, which causes it to rerun the build method below
         // so that the display can reflect the updated values. If we changed
         // _counter without calling setState(), then the build method would not be
         // called again, and so nothing would appear to happen.
-        _counter += 1;
+        _counter++;
+        
         });
+        
+        // Set storage to the counter
+        return widget.storage.writeCounter(_counter);
     }
 
     @override
