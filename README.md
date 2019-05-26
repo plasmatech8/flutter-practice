@@ -81,3 +81,5 @@ Code was added to `_MyHomePageState._incrementCounter()` to save the to the cout
 // Set storage to the counter
 return widget.storage.writeCounter(_counter);
 ```
+
+## HTTP requests
