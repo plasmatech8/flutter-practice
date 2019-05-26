@@ -68,7 +68,6 @@ main.dart
 ```dart
 import 'package:flutter/foundation.dart';
 import 'dart:async';
-import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 ```
 
@@ -84,4 +83,15 @@ return widget.storage.writeCounter(_counter);
 
 ## HTTP requests
 
-:)
+Use the http package for http requests.
+
+pubspec.yaml
+```yaml
+# HTTP requests package
+http: ^0.12.0+2
+```
+
+main.dart
+```dart
+import 'package:http/http.dart';
+```

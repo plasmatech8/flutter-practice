@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:async';
 import 'package:path_provider/path_provider.dart';
-
+import 'package:http/http.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,6 +20,13 @@ class MyApp extends StatelessWidget {
         );
     }
 }
+
+// class GetData {
+//     Future<http.Respnse> fetchData(http.Client client) async {
+//         // Using get from http.Client
+//         return client.get('http://jsonplaceholder.typicode.com/photos')
+//     }
+// }
 
 class CounterStorage {
     
