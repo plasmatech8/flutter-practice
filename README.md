@@ -12,7 +12,7 @@ Things done:
 	* Floating button - create a ListTile button which navigates to the SecondPage when clicked
 	* RaisedButton - navigates to MyHomePage when clicked
 * Imported the Font Awesome package and used icons/graphics
-* 
+* Added file read/write storage
 
 ## Flutter setup and android emulator
 Follow the instructions for installing and setting up Flutter: https://flutter.dev/docs/get-started/install
