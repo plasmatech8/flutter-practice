@@ -83,3 +83,5 @@ return widget.storage.writeCounter(_counter);
 ```
 
 ## HTTP requests
+
+:)
