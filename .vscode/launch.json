@@ -5,8 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Flutter",
+            "name": "LGFFMD Flutter",
             "program": "Learning Google Flutter for Mobile Developers/lib/main.dart",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "FTFB Flutter",
+            "program": "Flutter Tutorial for Beginners/myapp/lib/main.dart",
             "request": "launch",
             "type": "dart"
         }
