@@ -3,17 +3,19 @@
 [Flutter Tutorial for Beginners](https://www.youtube.com/watch?v=1ukSR1GRtMU&list=PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ) by The Net Ninja on YouTube.
 
 - [Flutter Tutorial for Beginners](#flutter-tutorial-for-beginners)
-  - [Widgets](#widgets)
-  - [Simple app](#simple-app)
-  - [Colors](#colors)
-  - [Text Styles](#text-styles)
-  - [Fonts](#fonts)
-  - [Stateless Widgets & Hot Reload](#stateless-widgets--hot-reload)
-  - [Images](#images)
-  - [Buttons and Icons](#buttons-and-icons)
-  - [Containers and Padding](#containers-and-padding)
-  - [Rows and Columns](#rows-and-columns)
-  - [Flutter Outline and Shortcuts](#flutter-outline-and-shortcuts)
+  - [Basics](#basics)
+    - [Widgets](#widgets)
+    - [Simple app](#simple-app)
+    - [Colors](#colors)
+    - [Text Styles](#text-styles)
+    - [Fonts](#fonts)
+    - [Stateless Widgets & Hot Reload](#stateless-widgets--hot-reload)
+    - [Images](#images)
+    - [Buttons and Icons](#buttons-and-icons)
+    - [Containers and Padding](#containers-and-padding)
+    - [Rows and Columns](#rows-and-columns)
+    - [Flutter Outline and Shortcuts](#flutter-outline-and-shortcuts)
+    - [Expanded](#expanded)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -24,7 +26,9 @@ vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * To make guides continuous: `editor.lineHeight: 17` (instead of 0)
 * To remove indentation guides: `"[dart]": {"editor.renderIndentGuides": false,},`
 
-## Widgets
+## Basics
+
+### Widgets
 
 There are many widgets and each widget can be configured using properties.
 
@@ -45,7 +49,7 @@ e.g:
 * Column Widget
 * Image Widget
 
-## Simple app
+### Simple app
 
 ```dart
 void main() => runApp(MaterialApp(
@@ -64,7 +68,7 @@ void main() => runApp(MaterialApp(
     ));
 ```
 
-## Colors
+### Colors
 
 We can add colors using the `Colors` object:
 ```dart
@@ -72,7 +76,7 @@ Colors.red[600]
 ```
 We can also set strengths for the colors using the square brackets.
 
-## Text Styles
+### Text Styles
 
 We style text using `TextStyle` object
 ```dart
@@ -82,7 +86,7 @@ child: Text(
 ),
 ```
 
-## Fonts
+### Fonts
 
 If we want to add a custom font (not in library) we can downlaod a font from
 [Google Fonts](https://fonts.google.com/), and save to the project (i.e. fonts
@@ -90,7 +94,7 @@ directory).
 
 We can then add it to the pubspec.yaml file. Then use `fontFamily: 'My Font',`.
 
-## Stateless Widgets & Hot Reload
+### Stateless Widgets & Hot Reload
 
 We need to create a stateless widget widget with a `build` function in order to
 use Hot-Reloading (not just a MaterialApp widget).
@@ -120,7 +124,7 @@ class Home extends StatelessWidget {
 }
 ```
 
-## Images
+### Images
 
 We can use either `NetworkImages('URL')` or
 `AssetImage(assets/image.png)`.
@@ -136,7 +140,7 @@ Image.network('https://www.publicdomainpictures.net/pictures/40000/velka/spatiul
 Image.asset('assets/space.png')
 ```
 
-## Buttons and Icons
+### Buttons and Icons
 
 ```dart
 Icon(
@@ -183,7 +187,7 @@ IconButton(
 ),
 ```
 
-## Containers and Padding
+### Containers and Padding
 
 **Containers**:
 * Fills maxmimum area when contains no children.
@@ -193,7 +197,7 @@ IconButton(
 
 If we only want padding, we can use the `Padding` class.
 
-## Rows and Columns
+### Rows and Columns
 
 ```dart
 Row(
@@ -219,8 +223,25 @@ Columns are probably most useful for most apps.
 We can also use nested rows/columns. Note: that columns/rows will fill maximium
 distance.
 
-## Flutter Outline and Shortcuts
+### Flutter Outline and Shortcuts
 
 If you click on a class, a light-bulb will pop up which provides quick-actions.
 
+![](docs/2020-07-17-15-26-41.png)
+
+### Expanded
+
+The `Expanded` widget will expand itself so that space is filled in a
+row/column.
+
+This can be used to devide space into portions of specific size.
+
+![](docs/![](docs/2020-07-17-15-19-16.png)
+.png)
+
+We can also have multiple `Expanded` widgets in one `Row` and use the flex
+property to maintain a size ratio between each (like flexbox).
+
+We can also use Expanded to scale `Images` in accordance to their available
+space/flex ratio.
 

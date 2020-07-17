@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(home: Home3()));
+void main() => runApp(MaterialApp(home: Home4()));
 
 // Buttons and Icons
 class Home extends StatelessWidget {
@@ -82,6 +82,52 @@ class Home3 extends StatelessWidget {
               Container(child: Text('thing 22'), color: Colors.red),
               Container(child: Text('thing 333'), color: Colors.red),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// Expanded Widgets
+class Home4 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('my first app'),
+        centerTitle: true,
+        backgroundColor: Colors.red[600],
+      ),
+      body: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 2,
+            child: Image.asset('assets/space.png'),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              padding: EdgeInsets.all(30),
+              color: Colors.cyan,
+              child: Text('1'),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              padding: EdgeInsets.all(30),
+              color: Colors.pinkAccent,
+              child: Text('2'),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              padding: EdgeInsets.all(30),
+              color: Colors.amber,
+              child: Text('3'),
+            ),
           ),
         ],
       ),
