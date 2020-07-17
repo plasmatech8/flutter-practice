@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(home: Home4()));
+void main() => runApp(MaterialApp(home: Temp()));
+
+class Temp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Home3();
+  }
+}
 
 // Buttons and Icons
 class Home extends StatelessWidget {

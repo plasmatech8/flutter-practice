@@ -3,7 +3,7 @@
 [Flutter Tutorial for Beginners](https://www.youtube.com/watch?v=1ukSR1GRtMU&list=PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ) by The Net Ninja on YouTube.
 
 - [Flutter Tutorial for Beginners](#flutter-tutorial-for-beginners)
-  - [Basics](#basics)
+  - [01. Basics](#01-basics)
     - [Widgets](#widgets)
     - [Simple app](#simple-app)
     - [Colors](#colors)
@@ -16,6 +16,7 @@
     - [Rows and Columns](#rows-and-columns)
     - [Flutter Outline and Shortcuts](#flutter-outline-and-shortcuts)
     - [Expanded](#expanded)
+  - [02. Ninja ID app](#02-ninja-id-app)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -26,7 +27,7 @@ vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * To make guides continuous: `editor.lineHeight: 17` (instead of 0)
 * To remove indentation guides: `"[dart]": {"editor.renderIndentGuides": false,},`
 
-## Basics
+## 01. Basics
 
 ### Widgets
 
@@ -223,6 +224,8 @@ Columns are probably most useful for most apps.
 We can also use nested rows/columns. Note: that columns/rows will fill maximium
 distance.
 
+![](docs/2020-07-17-15-57-20.png)
+
 ### Flutter Outline and Shortcuts
 
 If you click on a class, a light-bulb will pop up which provides quick-actions.
@@ -244,4 +247,6 @@ property to maintain a size ratio between each (like flexbox).
 
 We can also use Expanded to scale `Images` in accordance to their available
 space/flex ratio.
+
+## 02. Ninja ID app
 
