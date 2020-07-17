@@ -17,6 +17,7 @@
     - [Flutter Outline and Shortcuts](#flutter-outline-and-shortcuts)
     - [Expanded](#expanded)
   - [02. Ninja ID app](#02-ninja-id-app)
+    - [Basic static content](#basic-static-content)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -250,3 +251,29 @@ space/flex ratio.
 
 ## 02. Ninja ID app
 
+We will make a material theme app with some customizations.
+
+### Basic static content
+
+**SizedBox** for padding - The `SizedBox` widget is an alternate easy way to add padding around a widget.
+It is simply a invisible box which fills space.
+
+For the email, we just used a `Row` containing an `Icon`, `SizedBox`, and
+`Text`.
+
+A button icon might also be good for this, i.e:
+```dart
+RaisedButton.icon(
+  onPressed: () => {},
+  icon: Icon(Icons.email,color: Colors.amberAccent[200]),
+  color: Colors.transparent,
+  label: Text('chun.li@example.com',
+    style: TextStyle(color: Colors.amberAccent[200])),
+)
+```
+
+**CircleAvatar** for profile icon. This was placed inside of a `Center` widget.
+
+**Divider** for section divider
+
+![](docs/2020-07-17-17-10-23.png)
