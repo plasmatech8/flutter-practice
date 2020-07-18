@@ -15,6 +15,12 @@
             "program": "Flutter Tutorial for Beginners/myapp/lib/main.dart",
             "request": "launch",
             "type": "dart"
-        }
+        },
+        {
+            "name": "Current file",
+            "program": "${file}",
+            "request": "launch",
+            "type": "dart"
+        },
     ]
 }
