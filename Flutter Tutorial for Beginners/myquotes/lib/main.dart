@@ -31,12 +31,21 @@ class _QuoteListState extends State<QuoteList> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Awesome Quotes'),
         centerTitle: true,
         backgroundColor: Colors.red,
+        title: Text('Awesome Quotes'),
       ),
       body: Column(
-        children: quotes.map((q) => QuoteCard(quote: q)).toList(),
+        children: quotes
+            .map(
+              (q) => QuoteCard(
+                quote: q,
+                delete: () {
+                  setState(() => quotes.remove(q));
+                },
+              ),
+            )
+            .toList(),
       ),
     );
   }

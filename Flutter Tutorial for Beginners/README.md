@@ -23,6 +23,7 @@
     - [Lists of data](#lists-of-data)
     - [Custom classes](#custom-classes)
     - [Cards](#cards)
+    - [Passing functions to child widgets](#passing-functions-to-child-widgets)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -422,4 +423,30 @@ class QuoteCard extends StatelessWidget {
 * Stateless widgets cannot contain data/attributes unless the `final` keyword
 is used to denote that they cannot be changed.
 
+### Passing functions to child widgets
 
+We will add a delete button on the `QuoteCard` widget. The problem is that the
+state is stored in the parent widget (`QuoteList`).
+
+We must pass the function to delete a quote into child widgets.
+```dart
+Column(
+  children: quotes
+    .map(
+      (q) => QuoteCard(
+        quote: q,
+        delete: () {
+          setState(() => quotes.remove(q));
+        },
+      ),
+    )
+    .toList(),
+),
+```
+
+And store the function in the child widget:
+```dart
+final Quote quote;
+final Function delete;
+QuoteCard({this.quote, this.delete});
+```
