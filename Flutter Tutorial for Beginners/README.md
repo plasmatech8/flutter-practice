@@ -24,6 +24,7 @@
     - [Custom classes](#custom-classes)
     - [Cards](#cards)
     - [Passing functions to child widgets](#passing-functions-to-child-widgets)
+  - [04. World Clock App](#04-world-clock-app)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -450,3 +451,13 @@ final Quote quote;
 final Function delete;
 QuoteCard({this.quote, this.delete});
 ```
+
+## 04. World Clock App
+
+We will have pages:
+* Loading
+* Home
+* ChooseLocation
+
+We can import using either: `import 'pages/home.dart';` or
+`import 'package:world_time/pages/home.dart';`.
