@@ -18,6 +18,7 @@
     - [Expanded](#expanded)
   - [02. Ninja ID app](#02-ninja-id-app)
     - [Basic static content](#basic-static-content)
+    - [Stateful Widgets](#stateful-widgets)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -277,3 +278,40 @@ RaisedButton.icon(
 **Divider** for section divider
 
 ![](docs/2020-07-17-17-10-23.png)
+
+### Stateful Widgets
+
+Stateful widgets have a widget class, and a state class.
+
+```dart
+// Widget
+class Test extends StatefulWidget {
+  @override
+  _TestState createState() => _TestState();
+}
+
+// State object (updates the widget tree on state change)
+class _TestState extends State<Test> {
+  int counter = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+```
+
+We can convert NinjaCard to a stateful widget by using the light bulb shortcut.
+
+In order to change the state (change ninja level), we need to use the setState
+function. Otherwise it will not reload the widget tree.
+
+```dart
+onPressed: () {
+  setState(() {
+    ninjaLevel += 1;
+  });
+},
+```
+
+![](docs/2020-07-18-16-17-02.png)
