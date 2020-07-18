@@ -19,6 +19,10 @@
   - [02. Ninja ID app](#02-ninja-id-app)
     - [Basic static content](#basic-static-content)
     - [Stateful Widgets](#stateful-widgets)
+  - [03. Quotes](#03-quotes)
+    - [Lists of data](#lists-of-data)
+    - [Custom classes](#custom-classes)
+    - [Cards](#cards)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -315,3 +319,39 @@ onPressed: () {
 ```
 
 ![](docs/2020-07-18-16-17-02.png)
+
+## 03. Quotes
+
+### Lists of data
+
+We can choose to either use:
+* The inbuilt `ListView` component
+* The map function
+
+We can use the map function (returns an Iterable) and cast to a list.
+```dart
+children: quotes.map((q) => Text(q)).toList(),
+```
+(Note: Arrow function is same as Anon function except returns the
+result and does not need braces)
+
+### Custom classes
+
+We can create classes to store our data.
+```dart
+class Quote {
+  String text;
+  String author;
+
+  Quote({this.text, this.author});
+}
+```
+We can also use `Quote({String text, String author}){...}` to force
+parameters to be named parameters.
+
+We can also use `Quote({this.text, this.author});` to perform
+immediate assignment to the class.
+
+(`children: quotes.map((q) => Text('${q.text} - ${q.author}')).toList()`)
+
+### Cards
