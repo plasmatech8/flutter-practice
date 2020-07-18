@@ -355,3 +355,71 @@ immediate assignment to the class.
 (`children: quotes.map((q) => Text('${q.text} - ${q.author}')).toList()`)
 
 ### Cards
+
+We will use a helper function to create cards.
+```dart
+Widget quoteTemplate(quote) {
+  return Card(
+    margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+    child: Padding(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Text(
+            quote.text,
+            style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+          ),
+          SizedBox(height: 6),
+          Text(
+            quote.author,
+            style: TextStyle(fontSize: 14, color: Colors.grey[800]),
+          ),
+          SizedBox(height: 6),
+        ],
+      ),
+    ),
+  );
+}
+```
+* The `Card`-`margin` property adds padding around the whole body.
+* The `Padding` adds padding around the text elements inside each card.
+* The `Column`-`crossAxisAlignment` property can be used to stretch the `Text`
+widget to max-width.
+
+We can extract this into a stateless class for modularisation.
+```dart
+class QuoteCard extends StatelessWidget {
+  final Quote quote;
+  QuoteCard({this.quote});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              quote.text,
+              style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+            ),
+            SizedBox(height: 6),
+            Text(
+              quote.author,
+              style: TextStyle(fontSize: 14, color: Colors.grey[800]),
+            ),
+            SizedBox(height: 6),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+* Stateless widgets cannot contain data/attributes unless the `final` keyword
+is used to denote that they cannot be changed.
+
+
