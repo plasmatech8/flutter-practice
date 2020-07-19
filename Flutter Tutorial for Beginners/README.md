@@ -27,6 +27,7 @@
   - [04. World Clock App](#04-world-clock-app)
     - [Routing](#routing)
     - [Widget Lifecycle](#widget-lifecycle)
+    - [Asynchronous Code](#asynchronous-code)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -544,3 +545,41 @@ class _ChooseLocationState extends State<ChooseLocation> {
   }
 }
 ```
+
+### Asynchronous Code
+
+Asynchronous code is non-blocking.
+
+* **async** - do something without blocking code
+* **await** - wait for dependent data to arive
+* **futures** - similar to properties ***
+
+```dart
+void getData() async {
+  // Simulate network request to get a username
+  String username = await Future.delayed(Duration(seconds: 2), () {
+    print('Simulated async network request');
+    return 'yoshi';
+  });
+
+  // Simulate network request to get bio using username
+  // (breaks if no await above because username is null)
+  String bio = await Future.delayed(Duration(seconds: 1), () {
+    print('Simulated async network request');
+    return 'bio for $username';
+  });
+
+  // This runs immediately if no awaiting is performed
+  print('$username - $bio');
+}
+```
+Because the function is `async`, it will execute in a seperate thread. It will
+not block code outside the function.
+
+The `await` keyword will ensure that the code waits for the `Future` object to
+be loaded. They are dependencies for later parts of the function.
+
+> Note that you do not need async to use await.
+
+> Note that we can also assign variables inside the anonymous functions instead
+of returning a value.

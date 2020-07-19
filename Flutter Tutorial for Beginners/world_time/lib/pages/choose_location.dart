@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class ChooseLocation extends StatefulWidget {
@@ -8,10 +10,29 @@ class ChooseLocation extends StatefulWidget {
 class _ChooseLocationState extends State<ChooseLocation> {
   int counter = 0;
 
+  void getData() async {
+    // Simulate network request to get a username
+    String username = await Future.delayed(Duration(seconds: 2), () {
+      print('Simulated async network request');
+      return 'yoshi';
+    });
+
+    // Simulate network request to get bio using username
+    // (breaks if no await above because username is null)
+    String bio = await Future.delayed(Duration(seconds: 1), () {
+      print('Simulated async network request');
+      return 'bio for $username';
+    });
+
+    // This runs immediately if no awaiting is performed
+    print('$username - $bio');
+  }
+
   @override
   void initState() {
     super.initState();
     print('initState function ran');
+    getData();
   }
 
   @override
