@@ -25,6 +25,7 @@
     - [Cards](#cards)
     - [Passing functions to child widgets](#passing-functions-to-child-widgets)
   - [04. World Clock App](#04-world-clock-app)
+    - [Routing](#routing)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -454,10 +455,35 @@ QuoteCard({this.quote, this.delete});
 
 ## 04. World Clock App
 
-We will have pages:
+We will have three pages:
 * Loading
 * Home
 * ChooseLocation
 
 We can import using either: `import 'pages/home.dart';` or
 `import 'package:world_time/pages/home.dart';`.
+
+### Routing
+
+Instead of using `MaterialApp(home: Home())` we can use:
+```dart
+MaterialApp(
+  initialRoute: '/home', // Temp
+  routes: {
+    '/': (context) => Loading(),
+    '/home': (context) => Home(),
+    '/chooselocation': (context) => ChooseLocation(),
+  },
+),
+```
+We can override the default route from `/` to `/home` for the time-being.
+
+Then we can add a button which pushes the page on top of the other page. (The
+previous page is still behind the old page).
+```dart
+onPressed: () {
+  Navigator.pushNamed(context, '/chooselocation');
+},
+```
+
+It is good to use `AppBar` because it automatically adds a back button.
