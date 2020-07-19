@@ -30,6 +30,7 @@
     - [Asynchronous Code](#asynchronous-code)
     - [Flutter packages](#flutter-packages)
     - [WorldTime custom clas](#worldtime-custom-clas)
+    - [Error handling](#error-handling)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -652,6 +653,9 @@ class WorldTime {
 We will return a `Future` object so that we can await for values when we use
 `getTime()`.
 ```dart
+import 'package:http/http.dart';
+import 'dart:convert';
+
 void setupWorldTime() async {
   WorldTime instance = WorldTime(
     location: 'Melbourne',
@@ -664,3 +668,45 @@ void setupWorldTime() async {
   });
 }
 ```
+
+### Error handling
+
+If we enter the wrong endpoint URL, we will get errors due to having bad JSON
+response and null values.
+
+We will add a try-catch block and set data to appropriate values.
+
+```dart
+class WorldTime {
+  String location; // Display name
+  String flag; // Flag asset URL
+  String url; // API endpoint
+  String time;
+
+  WorldTime({this.location, this.flag, this.url}) {
+    getTime();
+  }
+
+  Future<void> getTime() async {
+    try {
+      // Make request
+      Response res = await get('http://worldtimeapi.org/api/timezone/$url');
+      Map data = jsonDecode(res.body);
+
+      // Get properties
+      String datetime = data['datetime']; // '2020-07-19T15:07:55.000185+10:00'
+      String offset = data['utc_offset'].substring(0, 3); // '+10:00'
+
+      // Get datetime
+      DateTime now = DateTime.parse(datetime);
+      now = now.add(Duration(hours: int.parse(offset)));
+      time = now.toString();
+    } catch (e) {
+      print('Caught error: $e');
+      time = 'Could not get time data!!!';
+    }
+  }
+}
+```
+
+Now we have a loading screen that loads data from an API.
