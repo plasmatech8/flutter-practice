@@ -28,6 +28,7 @@
     - [Routing](#routing)
     - [Widget Lifecycle](#widget-lifecycle)
     - [Asynchronous Code](#asynchronous-code)
+    - [Flutter packages](#flutter-packages)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -583,3 +584,31 @@ be loaded. They are dependencies for later parts of the function.
 
 > Note that we can also assign variables inside the anonymous functions instead
 of returning a value.
+
+### Flutter packages
+
+Flutter packages are good.
+
+The `http` package will be used for network requests.
+(https://pub.dev/packages/http/install)
+
+The inbuilt `convert` package will help convert json to a `Map` object.
+
+```dart
+import 'package:http/http.dart';
+import 'dart:convert';
+
+// ...
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    Response res = await get('https://jsonplaceholder.typicode.com/todos/1');
+    Map data = jsonDecode(res.body);
+    print(data);
+  }
+// ...
+```
