@@ -29,6 +29,7 @@
     - [Widget Lifecycle](#widget-lifecycle)
     - [Asynchronous Code](#asynchronous-code)
     - [Flutter packages](#flutter-packages)
+    - [WorldTime custom clas](#worldtime-custom-clas)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -580,7 +581,8 @@ not block code outside the function.
 The `await` keyword will ensure that the code waits for the `Future` object to
 be loaded. They are dependencies for later parts of the function.
 
-> Note that you do not need async to use await.
+> Note we need to be inside of an async function to use await, and we need to
+> performing an await on a Future object.
 
 > Note that we can also assign variables inside the anonymous functions instead
 of returning a value.
@@ -611,4 +613,54 @@ import 'dart:convert';
     print(data);
   }
 // ...
+```
+
+### WorldTime custom clas
+
+We will move data API loading from the loading screen to a custom class.
+
+```dart
+import 'package:http/http.dart';
+import 'dart:convert';
+
+class WorldTime {
+  String location; // Display name
+  String flag; // Flag asset URL
+  String url; // API endpoint
+  String time;
+
+  WorldTime({this.location, this.flag, this.url}) {
+    getTime();
+  }
+
+  Future<void> getTime() async {
+    // Make request
+    Response res = await get('http://worldtimeapi.org/api/timezone/$url');
+    Map data = jsonDecode(res.body);
+
+    // Get properties
+    String datetime = data['datetime']; // '2020-07-19T15:07:55.000185+10:00'
+    String offset = data['utc_offset'].substring(0, 3); // '+10:00'
+
+    // Get datetime
+    DateTime now = DateTime.parse(datetime);
+    now = now.add(Duration(hours: int.parse(offset)));
+    time = now.toString();
+  }
+}
+```
+We will return a `Future` object so that we can await for values when we use
+`getTime()`.
+```dart
+void setupWorldTime() async {
+  WorldTime instance = WorldTime(
+    location: 'Melbourne',
+    flag: 'australia.png',
+    url: 'Australia/Melbourne',
+  );
+  await instance.getTime();
+  setState(() {
+    time = instance.time;
+  });
+}
 ```
