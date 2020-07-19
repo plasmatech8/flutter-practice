@@ -26,6 +26,7 @@
     - [Passing functions to child widgets](#passing-functions-to-child-widgets)
   - [04. World Clock App](#04-world-clock-app)
     - [Routing](#routing)
+    - [Widget Lifecycle](#widget-lifecycle)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -487,3 +488,59 @@ onPressed: () {
 ```
 
 It is good to use `AppBar` because it automatically adds a back button.
+
+### Widget Lifecycle
+
+Stateless Widgets|Statefull Widgets
+-|-
+State does not change over time|State can change over time
+Build function runs once|`setState()` triggers the build function
+
+Statefull widgets:
+* **initState()**
+  * Called when widget is created
+  * Can be used to: subscribe to streams, or objects that change data
+
+* **build()**
+  * Builds the widget tree
+  * Triggered by setState()
+
+* **dispose()**
+  * When widget/state object is removed
+
+```dart
+class _ChooseLocationState extends State<ChooseLocation> {
+  int counter = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    print('initState function ran'); // Page loaded
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print('build function ran');
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        backgroundColor: Colors.blue[900],
+        centerTitle: true,
+        elevation: 0,
+        title: Text('Choose a Location'),
+      ),
+      body: RaisedButton(
+          onPressed: () {
+            setState(() => counter++); // Causes rebuild
+          },
+          child: Text('Counter is $counter')),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('dispose function ran'); // Back button pressed
+  }
+}
+```

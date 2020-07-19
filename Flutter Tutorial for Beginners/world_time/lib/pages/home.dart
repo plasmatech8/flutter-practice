@@ -13,7 +13,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.blue[900],
         centerTitle: true,
         elevation: 0,
-        leading: null,
+        leading: Container(), // No back buttton
         title: Text('Home Page'),
       ),
       body: SafeArea(
