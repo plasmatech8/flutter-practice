@@ -35,6 +35,7 @@
     - [Formatting and Showing Dates](#formatting-and-showing-dates)
     - [Loader/Spinners](#loaderspinners)
     - [Background image](#background-image)
+    - [Updating time using choose locations page](#updating-time-using-choose-locations-page)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -770,4 +771,71 @@ Container(
     ),
   ),
   child: // ...
+```
+
+### Updating time using choose locations page
+
+On the choose location screen:
+
+We will create cards (with contents formatted using ListTiles).
+```dart
+body: ListView.builder(
+  itemCount: worldtimes.length,
+  itemBuilder: (context, index) {
+    return Card(
+      child: ListTile(
+        onTap: () {
+          updateTime(index);
+        },
+        title: Text(worldtimes[index].location),
+        leading: CircleAvatar(
+          backgroundImage: AssetImage(worldtimes[index].flag),
+        ),
+      ),
+    );
+  },
+),
+```
+
+An async function can be used get the time data and push data back to the home
+screen.
+```dart
+void updateTime(index) async {
+  WorldTime instance = worldtimes[index];
+  await instance.getTime();
+  // Navigate to home screen with data
+  Navigator.pop(context, {
+    'location': instance.location,
+    'time': instance.time,
+    'flag': instance.flag,
+    'isDaytime': instance.isDaytime,
+  });
+}
+```
+
+Then we can modify the Home widget and choose location button so that is
+treated like a single large async task (+ensure that the data is not
+overwritten after setState).
+```dart
+data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
+
+FlatButton.icon(
+  onPressed: () async {
+    dynamic result =
+        await Navigator.pushNamed(context, '/chooselocation');
+    setState(() {
+      data = {
+        'time': result['time'],
+        'location': result['location'],
+        'flag': result['flag'],
+        'isDaytime': result['isDaytime'],
+      };
+    });
+  },
+  icon: Icon(Icons.edit_location, color: Colors.grey[300]),
+  label: Text(
+    'Edit location',
+    style: TextStyle(color: Colors.grey[300]),
+  ),
+),
 ```
