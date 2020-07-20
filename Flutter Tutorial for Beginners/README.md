@@ -33,6 +33,7 @@
     - [Error handling](#error-handling)
     - [Passing Route Data](#passing-route-data)
     - [Formatting and Showing Dates](#formatting-and-showing-dates)
+    - [Loader/Spinners](#loaderspinners)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -747,3 +748,10 @@ We will install the `intl` to format our dates.
 time = DateFormat.jm().format(now);
 ```
 We will print the data on the home screen.
+
+### Loader/Spinners
+
+We can use the `flutter_spinkit` package, or use the inbuilt
+`CircularProgressIndicator()` widget.
+
+![](docs/2020-07-20-14-25-55.png)
