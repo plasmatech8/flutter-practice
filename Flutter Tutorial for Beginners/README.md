@@ -31,6 +31,7 @@
     - [Flutter packages](#flutter-packages)
     - [WorldTime custom clas](#worldtime-custom-clas)
     - [Error handling](#error-handling)
+    - [Passing Route Data](#passing-route-data)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -710,3 +711,30 @@ class WorldTime {
 ```
 
 Now we have a loading screen that loads data from an API.
+
+### Passing Route Data
+
+We will remove the 'loading...' attribute and text field.
+
+We will make it so that instead of having 'loading...' and then change the text
+to a datetime (using state), we will just redirect to home page while passing
+the `WorldTime` object.
+
+We can use `Navigator.pushNamed(context, '/home');`, however, we do not what to
+keep the loading page underneith.
+
+Instead we will use `Navigator.pushReplacementNamed(context, '/home');` to
+**change the current page**.
+
+Use arguments to pass attributes:
+```dart
+Navigator.pushReplacementNamed(context, '/home', arguments: {
+  'location': instance.location,
+  'time': instance.time,
+  'flag': instance.flag,
+});
+```
+Then we can access the arguments using
+```dart
+Map data = ModalRoute.of(context).settings.arguments;
+```
