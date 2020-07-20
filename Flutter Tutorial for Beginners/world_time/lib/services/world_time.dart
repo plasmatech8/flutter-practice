@@ -7,6 +7,7 @@ class WorldTime {
   String flag; // Flag asset URL
   String url; // API endpoint
   String time;
+  bool isDaytime;
 
   WorldTime({this.location, this.flag, this.url}) {
     getTime();
@@ -26,6 +27,7 @@ class WorldTime {
       DateTime now = DateTime.parse(datetime);
       now = now.add(Duration(hours: int.parse(offset)));
       time = DateFormat.jm().format(now); // Human readable time (using intl)
+      isDaytime = 6 < now.hour && now.hour < 20 ? true : false; // 6am-8pm
     } catch (e) {
       print('Caught error: $e');
       time = 'Could not get time data!!!';

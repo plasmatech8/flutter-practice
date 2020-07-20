@@ -34,6 +34,7 @@
     - [Passing Route Data](#passing-route-data)
     - [Formatting and Showing Dates](#formatting-and-showing-dates)
     - [Loader/Spinners](#loaderspinners)
+    - [Background image](#background-image)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -755,3 +756,18 @@ We can use the `flutter_spinkit` package, or use the inbuilt
 `CircularProgressIndicator()` widget.
 
 ![](docs/2020-07-20-14-25-55.png)
+
+### Background image
+
+We will add a background image by creating a container with decoration.
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    image: DecorationImage(
+      image: AssetImage(bgImage),
+      fit: BoxFit.cover,
+    ),
+  ),
+  child: // ...
+```
