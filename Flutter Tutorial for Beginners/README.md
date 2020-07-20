@@ -32,6 +32,7 @@
     - [WorldTime custom clas](#worldtime-custom-clas)
     - [Error handling](#error-handling)
     - [Passing Route Data](#passing-route-data)
+    - [Formatting and Showing Dates](#formatting-and-showing-dates)
 
 vscode setup (see [here](https://www.youtube.com/watch?v=VHhksMa2Ffg)):
 * Settings: `Dart: Preview Flutter Ui Guides`
@@ -738,3 +739,11 @@ Then we can access the arguments using
 ```dart
 Map data = ModalRoute.of(context).settings.arguments;
 ```
+
+### Formatting and Showing Dates
+
+We will install the `intl` to format our dates.
+```dart
+time = DateFormat.jm().format(now);
+```
+We will print the data on the home screen.
