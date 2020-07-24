@@ -12,7 +12,22 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Widget get topSection => Container(
         height: 100,
-        color: Colors.yellow[300],
+        alignment: Alignment(0, 1), // move down within bar
+        //color: Colors.yellow[900], // visual
+        child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end, // Align bottom
+            mainAxisSize: MainAxisSize.min, // Take min size so it is centered
+            children: <Widget>[
+              Text('Following'),
+              SizedBox(width: 20),
+              Text(
+                'For you',
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ]),
       );
 
   Widget get middleSection => Expanded(

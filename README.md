@@ -319,7 +319,7 @@ We will:
 
 ![](docs/2020-07-24-14-34-51.png)
 
-### Update Actions toolbar (follow action)
+### 10. Update Actions toolbar (follow action)
 
 We will:
 * Add a follow button with stacked profile picture + plus icon
@@ -449,7 +449,7 @@ class ActionsToolbar extends StatelessWidget {
 ```
 ![](docs/2020-07-24-16-13-50.png)
 
-### Update Actions Bar (music player action)
+### 11. Update Actions Bar (music player action)
 
 The music player button is similar to the follow action. I have no idea what
 these buttons do at this time...
@@ -485,3 +485,31 @@ these buttons do at this time...
     );
   }
 ```
+
+### 12. Update top section
+
+Top section will have 'following' and 'For you' text.
+
+```dart
+  Widget get topSection => Container(
+        height: 100,
+        alignment: Alignment(0, 1), // move down within bar
+        color: Colors.yellow[900], // visual
+        child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end, // Align bottom
+            mainAxisSize: MainAxisSize.min, // Take min size so it is centered
+            children: <Widget>[
+              Text('Following'),
+              SizedBox(width: 20),
+              Text(
+                'For you',
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ]),
+      );
+```
+
+![](docs/2020-07-24-19-48-14.png)
