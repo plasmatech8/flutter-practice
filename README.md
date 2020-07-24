@@ -448,3 +448,40 @@ class ActionsToolbar extends StatelessWidget {
 }
 ```
 ![](docs/2020-07-24-16-13-50.png)
+
+### Update Actions Bar (music player action)
+
+The music player button is similar to the follow action. I have no idea what
+these buttons do at this time...
+
+![](docs/2020-07-24-19-26-30.png)
+```dart
+
+  Widget _getMusicPlayerAction() {
+    return Container(
+      width: actionWidgetSize,
+      height: actionWidgetSize,
+      //color: Colors.blue[300], // Visual
+      margin: EdgeInsets.only(bottom: actionWidgetMargin),
+      child: Container(
+        padding: EdgeInsets.all(11),
+        height: profileImageSize,
+        width: profileImageSize,
+        decoration: BoxDecoration(
+          gradient: musicGradient,
+          shape: BoxShape.circle,
+        ),
+        child: CachedNetworkImage(
+          imageUrl: profilePic,
+          placeholder: (context, url) => CircularProgressIndicator(),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(image: imageProvider)),
+          ),
+        ),
+      ),
+    );
+  }
+```

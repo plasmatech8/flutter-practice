@@ -33,6 +33,7 @@ class ActionsToolbar extends StatelessWidget {
             _getSocialAction(title: '16.4k', icon: TikTokIcons.chat_bubble),
             _getSocialAction(
                 title: 'Share', icon: TikTokIcons.reply, iconSize: 30),
+            _getMusicPlayerAction(),
           ]),
     );
   }
@@ -100,6 +101,46 @@ class ActionsToolbar extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         child: Icon(Icons.add, color: Colors.white, size: 20),
+      ),
+    );
+  }
+
+  LinearGradient get musicGradient => LinearGradient(
+        colors: [
+          Colors.grey[900],
+          Colors.grey[900],
+          Colors.grey[900],
+          Colors.grey[800],
+        ],
+        stops: [0, 0.4, 0.6, 1],
+        begin: Alignment.bottomLeft,
+        end: Alignment.topRight,
+      );
+
+  Widget _getMusicPlayerAction() {
+    return Container(
+      width: actionWidgetSize,
+      height: actionWidgetSize,
+      //color: Colors.blue[300], // Visual
+      margin: EdgeInsets.only(bottom: actionWidgetMargin),
+      child: Container(
+        padding: EdgeInsets.all(11),
+        height: profileImageSize,
+        width: profileImageSize,
+        decoration: BoxDecoration(
+          gradient: musicGradient,
+          shape: BoxShape.circle,
+        ),
+        child: CachedNetworkImage(
+          imageUrl: profilePic,
+          placeholder: (context, url) => CircularProgressIndicator(),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(image: imageProvider)),
+          ),
+        ),
       ),
     );
   }
