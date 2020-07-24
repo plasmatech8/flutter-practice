@@ -127,3 +127,40 @@ class _HomeState extends State<Home> {
 }
 ```
 
+### 03. Video Description layout
+
+The video description will comprise of a number of rows which fills upwards
+from the bottom of the middle section.
+```dart
+  Widget get middleSection => Expanded(
+        // Row splits middle into two parts (left/right)
+        child: Row(
+          mainAxisSize: MainAxisSize.max, // ??? don't know what this does
+          crossAxisAlignment: CrossAxisAlignment.end, // Move to bottom (fillup)
+          children: <Widget>[
+            videoDescription, // Video description [expands horizontally]
+            actionsToolbar, // Actions toolbar [fixed-size space on the right]
+          ],
+        ),
+      );
+
+  Widget get videoDescription => Expanded(
+        child: Column(
+          mainAxisSize: MainAxisSize.min, // Only take up space of children
+          children: <Widget>[
+            Container(
+                height: 10,
+                color: Colors.green[300],
+                margin: EdgeInsets.only(top: 10)),
+            Container(
+                height: 10,
+                color: Colors.green[300],
+                margin: EdgeInsets.only(top: 10)),
+            Container(
+                height: 10,
+                color: Colors.green[300],
+                margin: EdgeInsets.only(top: 10)),
+          ],
+        ),
+      );
+```

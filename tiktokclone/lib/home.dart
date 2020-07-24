@@ -14,6 +14,8 @@ class _HomeState extends State<Home> {
   Widget get middleSection => Expanded(
         // Row splits middle into two parts
         child: Row(
+          //mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.end, // Move to bottom (fillup)
           children: <Widget>[
             videoDescription, // Video description [expands horizontally]
             actionsToolbar, // Actions toolbar [fixed-size space on the right]
@@ -22,7 +24,23 @@ class _HomeState extends State<Home> {
       );
 
   Widget get videoDescription => Expanded(
-        child: Container(color: Colors.green[300]),
+        child: Column(
+          mainAxisSize: MainAxisSize.min, // Only take up space of children
+          children: <Widget>[
+            Container(
+                height: 10,
+                color: Colors.green[300],
+                margin: EdgeInsets.only(top: 10)),
+            Container(
+                height: 10,
+                color: Colors.green[300],
+                margin: EdgeInsets.only(top: 10)),
+            Container(
+                height: 10,
+                color: Colors.green[300],
+                margin: EdgeInsets.only(top: 10)),
+          ],
+        ),
       );
 
   Widget get actionsToolbar => Container(
