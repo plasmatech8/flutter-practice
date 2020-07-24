@@ -308,3 +308,14 @@ Widget _getSocialAction({String title, IconData icon, double iconSize = 35}) {
   );
 }
 ```
+
+### 09. Update Themes
+
+We will:
+1. Set default text colour to white
+2. Set the music note icon to white
+3. Set the background colour of the scaffold to black
+4. Remove background colours on containers
+
+![](docs/2020-07-24-14-34-51.png)
+

@@ -7,7 +7,7 @@ class ActionsToolbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 100,
-      color: Colors.red[300],
+      //color: Colors.red[300],
       child: Column(
           mainAxisSize: MainAxisSize.min, // Use min space and expand upwards
           children: <Widget>[
@@ -24,8 +24,8 @@ Widget _getSocialAction({String title, IconData icon, double iconSize = 35}) {
   return Container(
     width: 60,
     height: 60,
-    color: Colors.blue[300],
-    margin: EdgeInsets.only(top: 20),
+    //color: Colors.blue[300],
+    margin: EdgeInsets.only(bottom: 10),
     child: Column(children: <Widget>[
       Icon(icon, size: iconSize, color: Colors.grey[300]),
       Padding(
