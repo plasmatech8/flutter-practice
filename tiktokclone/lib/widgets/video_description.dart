@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 
 class VideoDescription extends StatelessWidget {
-  const VideoDescription({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Column(
-          mainAxisSize: MainAxisSize.min, // Only take up space of children
-          children: <Widget>[
-            Container(
-                height: 10,
-                color: Colors.green[300],
-                margin: EdgeInsets.only(top: 10)),
-            Container(
-                height: 10,
-                color: Colors.green[300],
-                margin: EdgeInsets.only(top: 10)),
-            Container(
-                height: 10,
-                color: Colors.green[300],
-                margin: EdgeInsets.only(top: 10)),
-          ]),
+      child: Container(
+        height: 70,
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Space evenly
+            crossAxisAlignment: CrossAxisAlignment.start, // Align left
+            children: <Widget>[
+              Text('@MrMark', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text('Video title'),
+              Row(
+                children: <Widget>[
+                  Icon(Icons.music_note, size: 15),
+                  Text('Artist name - Album name - song')
+                ],
+              ),
+            ]),
+      ),
     );
   }
 }

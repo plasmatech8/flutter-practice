@@ -16,6 +16,7 @@ Building TikTok's UI in Flutter - By Dane Mackier
 
 
 First we will layout the sections.
+
 ![](docs/2020-07-24-12-21-02.png)
 ```dart
 import 'package:flutter/material.dart';
@@ -131,7 +132,7 @@ class _HomeState extends State<Home> {
 
 The video description will comprise of a number of rows which fills upwards
 from the bottom of the middle section.
-![](docs/2020-07-24-12-47-57.png)
+
 ```dart
   Widget get middleSection => Expanded(
         // Row splits middle into two parts (left/right)
@@ -170,6 +171,7 @@ from the bottom of the middle section.
 
 The actions toolbar will have a bunch of buttons. The buttons will fill minimum
 space so that it does not fill from top to bottom and expands upwards.
+
 ![](docs/2020-07-24-12-56-31.png)
 ```dart
   Widget get actionsToolbar => Container(
@@ -193,6 +195,7 @@ space so that it does not fill from top to bottom and expands upwards.
 ### 05. Bottom Section bar
 
 We will set the bottom section as evenly spaced container widgets horizontally.
+
 ![](docs/2020-07-24-13-04-16.png)
 ```dart
   Widget get bottomSection => Row(
@@ -217,3 +220,42 @@ We will move widgets into their own files:
 
 it is a good idea to only modularise widgets if they have reletively small
 formatting (like always at bottom, size filled, etc).
+
+### 07. Video Description content
+
+We will add the user, video title and artist-album descriptions.
+
+We will:
+* Wrap the row with a container
+  * Add `height` to give exact height size (instead of relying on size of children)
+  * Add `padding` to space confortably around the text
+*  Use the column with `mainAxisAlignment` to space the text evenly in the container.
+
+![](docs/2020-07-24-13-29-24.png)
+
+```dart
+class VideoDescription extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        height: 70,
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Space evenly
+            crossAxisAlignment: CrossAxisAlignment.start, // Align left
+            children: <Widget>[
+              Text('@MrMark', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text('Video title'),
+              Row(
+                children: <Widget>[
+                  Icon(Icons.music_note, size: 15),
+                  Text('Artist name - Album name - song')
+                ],
+              ),
+            ]),
+      ),
+    );
+  }
+}
+```
