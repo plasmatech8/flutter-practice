@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:tiktokclone/widgets/bottom_toolbar.dart';
+import 'package:tiktokclone/widgets/actions_toolbar.dart';
+import 'package:tiktokclone/widgets/video_description.dart';
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -17,58 +21,9 @@ class _HomeState extends State<Home> {
           //mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.end, // Move to bottom (fillup)
           children: <Widget>[
-            videoDescription, // Video description [expands horizontally]
-            actionsToolbar, // Actions toolbar [fixed-size space on the right]
+            VideoDescription(), // Video description [expands horizontally]
+            ActionsToolbar(), // Actions toolbar [fixed-size space on the right]
           ],
-        ),
-      );
-
-  Widget get videoDescription => Expanded(
-        child: Column(
-          mainAxisSize: MainAxisSize.min, // Only take up space of children
-          children: <Widget>[
-            Container(
-                height: 10,
-                color: Colors.green[300],
-                margin: EdgeInsets.only(top: 10)),
-            Container(
-                height: 10,
-                color: Colors.green[300],
-                margin: EdgeInsets.only(top: 10)),
-            Container(
-                height: 10,
-                color: Colors.green[300],
-                margin: EdgeInsets.only(top: 10)),
-          ],
-        ),
-      );
-
-  Widget get actionsToolbar => Container(
-        width: 100,
-        color: Colors.red[300],
-        child: Column(
-          mainAxisSize: MainAxisSize.min, // Use min space and expand upwards
-          children: List<Widget>.generate(
-            5,
-            (_) => Container(
-              width: 60,
-              height: 60,
-              color: Colors.blue[300],
-              margin: EdgeInsets.only(top: 20),
-            ),
-          ),
-        ),
-      );
-
-  Widget get bottomSection => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: List<Widget>.generate(
-          5,
-          (index) => Container(
-            width: 40,
-            height: 40,
-            color: Colors.purple[300],
-          ),
         ),
       );
 
@@ -79,7 +34,7 @@ class _HomeState extends State<Home> {
         children: <Widget>[
           topSection, // Top Section (bar)
           middleSection, // Middle Section (desc + btns) [expands vertically]
-          bottomSection, // Bottom Section (bar)
+          BottomToolbar(), // Bottom Section (bar)
         ],
       ),
     );

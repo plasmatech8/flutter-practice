@@ -207,3 +207,13 @@ We will set the bottom section as evenly spaced container widgets horizontally.
         ),
       );
 ```
+
+### 06. Modularise into files
+
+We will move widgets into their own files:
+* actions_toolbar
+* bottom_toolbar
+* video_description
+
+it is a good idea to only modularise widgets if they have reletively small
+formatting (like always at bottom, size filled, etc).
