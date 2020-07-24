@@ -188,5 +188,22 @@ space so that it does not fill from top to bottom and expands upwards.
           ),
         ),
       );
+```
 
+### 05. Bottom Section bar
+
+We will set the bottom section as evenly spaced container widgets horizontally.
+![](docs/2020-07-24-13-04-16.png)
+```dart
+  Widget get bottomSection => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: List<Widget>.generate(
+          5,
+          (index) => Container(
+            width: 40,
+            height: 40,
+            color: Colors.purple[300],
+          ),
+        ),
+      );
 ```

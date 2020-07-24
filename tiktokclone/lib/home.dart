@@ -60,9 +60,16 @@ class _HomeState extends State<Home> {
         ),
       );
 
-  Widget get bottomSection => Container(
-        height: 100,
-        color: Colors.blue[300],
+  Widget get bottomSection => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: List<Widget>.generate(
+          5,
+          (index) => Container(
+            width: 40,
+            height: 40,
+            color: Colors.purple[300],
+          ),
+        ),
       );
 
   @override
