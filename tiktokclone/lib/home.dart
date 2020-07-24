@@ -18,7 +18,6 @@ class _HomeState extends State<Home> {
   Widget get middleSection => Expanded(
         // Row splits middle into two parts
         child: Row(
-          //mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.end, // Move to bottom (fillup)
           children: <Widget>[
             VideoDescription(), // Video description [expands horizontally]
