@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktokclone/widgets/bottom_toolbar.dart';
 import 'package:tiktokclone/widgets/actions_toolbar.dart';
 import 'package:tiktokclone/widgets/video_description.dart';
+import 'package:tiktokclone/widgets/tiktok_video_player.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -45,13 +46,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Column(
-        children: <Widget>[
+      body: Stack(children: <Widget>[
+        TikTokVideoPlayer(),
+        Column(children: <Widget>[
           topSection, // Top Section (bar)
           middleSection, // Middle Section (desc + btns) [expands vertically]
           BottomToolbar(), // Bottom Section (bar)
-        ],
-      ),
+        ]),
+      ]),
     );
   }
 }
