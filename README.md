@@ -131,6 +131,7 @@ class _HomeState extends State<Home> {
 
 The video description will comprise of a number of rows which fills upwards
 from the bottom of the middle section.
+![](docs/2020-07-24-12-47-57.png)
 ```dart
   Widget get middleSection => Expanded(
         // Row splits middle into two parts (left/right)
@@ -146,7 +147,7 @@ from the bottom of the middle section.
 
   Widget get videoDescription => Expanded(
         child: Column(
-          mainAxisSize: MainAxisSize.min, // Only take up space of children
+          mainAxisSize: MainAxisSize.min, // Only take up space of children (so it fills from bottom only to the required space)
           children: <Widget>[
             Container(
                 height: 10,
@@ -163,4 +164,29 @@ from the bottom of the middle section.
           ],
         ),
       );
+```
+
+### 04. Actions Toolbar layout
+
+The actions toolbar will have a bunch of buttons. The buttons will fill minimum
+space so that it does not fill from top to bottom and expands upwards.
+![](docs/2020-07-24-12-56-31.png)
+```dart
+  Widget get actionsToolbar => Container(
+        width: 100,
+        color: Colors.red[300],
+        child: Column(
+          mainAxisSize: MainAxisSize.min, // Use minimum size so it takes minimum space and expands upwards when more buttons exists
+          children: List<Widget>.generate(
+            5,
+            (_) => Container(
+              width: 60,
+              height: 60,
+              color: Colors.blue[300],
+              margin: EdgeInsets.only(top: 20),
+            ),
+          ),
+        ),
+      );
+
 ```
