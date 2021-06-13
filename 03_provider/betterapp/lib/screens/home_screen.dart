@@ -23,6 +23,11 @@ class MyHomePage extends StatelessWidget {
             Text('You have pushed the button this many times:'),
             Count(),
             /* Count in a seperate widget watching the provider state - avoids rebuilding entire widget */
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/second');
+                },
+                child: Text('Go to second screen')),
           ],
         ),
       ),

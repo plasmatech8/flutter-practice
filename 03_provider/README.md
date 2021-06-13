@@ -13,6 +13,9 @@ Contents:
     - [04. Add the provider to the app](#04-add-the-provider-to-the-app)
     - [05. Access the provider](#05-access-the-provider)
     - [06. Optimization](#06-optimization)
+  - [Shopping Cart Provider](#shopping-cart-provider)
+
+![](img/2021-06-13-16-36-50.png) ![](img/2021-06-13-16-34-02.png)
 
 ## Counter Provider
 
@@ -195,4 +198,99 @@ class Count extends StatelessWidget {
 }
 ```
 
+## Shopping Cart Provider
 
+Now we will create a new screen with a shopping cart.
+
+In `shopping_cart_provider.dart` we will create a new provider:
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class ShoppingCart with ChangeNotifier {
+  List<String> _shoppingCart = ['Apple', 'Orange', 'Banana'];
+
+  int get count => _shoppingCart.length;
+  List<String> get cart => _shoppingCart;
+
+  void addItem(String item) {
+    _shoppingCart.add(item);
+    notifyListeners();
+  }
+}
+```
+
+In `lib/screens/second_screen` we will add cart functionality:
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:betterapp/providers/shopping_cart_provider.dart';
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      /* App Bar */
+      appBar: AppBar(title: Text('Provider Example App')),
+
+      /* Body */
+      body: Center(
+        child: Column(
+          children: [
+            Text('${context.watch<ShoppingCart>().count}'),
+            Text('${context.watch<ShoppingCart>().cart}'),
+          ],
+        ),
+      ),
+
+      /* Floating Action Button */
+      floatingActionButton: FloatingActionButton(
+        key: Key('addItem_floatingActionButton'),
+        onPressed: () => context.read<ShoppingCart>().addItem('Bread'),
+      ),
+    );
+  }
+}
+```
+
+In `lib/main.dart` we will add a route to navigate to that screen and add the provider:
+```dart
+void main() {
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => Counter()),
+      ChangeNotifierProvider(create: (_) => ShoppingCart()), /* <= */
+    ],
+    child: MyApp(),
+  ));
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyHomePage(),
+        '/second': (context) => SecondPage(),  /* <= */
+      },
+    );
+  }
+}
+```
+
+In `lib/screens/home_screen.dart`  we will add a button to navigate to that route:
+```dart
+ElevatedButton(
+    onPressed: () {
+      Navigator.pushNamed(context, '/second');
+    },
+    child: Text('Go to second screen')),
+```
+
+Now we have a shopping cart that we can update using the button.
+
+![](img/2021-06-13-16-34-02.png)
