@@ -59,3 +59,17 @@ You need to:
 * Set MaterialApp properties: themeMode, theme, darkTheme
 * Add a toggle theme button
 * Set the theme in the loading screen from the user prefs
+
+
+To style our widget we can either set them explicitly in the theme, or set the theme on
+the widget:
+```dart
+textTheme: TextTheme(
+        headline1: TextStyle(color: Colors.black),
+        headline2: TextStyle(color: Colors.black),
+        bodyText1: TextStyle(color: Colors.black),
+        bodyText2: TextStyle(color: Colors.black),
+      ),
+// OR
+Text('asdasd', style: TextStyle(color: Theme.of(context.accentColor));
+```
