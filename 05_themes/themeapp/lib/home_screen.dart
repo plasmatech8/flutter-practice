@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:themeapp/theme_provider.dart';
 
@@ -16,11 +17,20 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
     context.read<ThemeProvider>().toggleTheme();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(microseconds: 1), () async {
+      await context.read<ThemeProvider>().initTheme();
+    });
   }
 
   @override
