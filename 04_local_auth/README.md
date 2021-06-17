@@ -3,6 +3,7 @@
 See:
 * [local_auth package docs](https://pub.dev/packages/local_auth)
 * [Fingerprint with localAuth - Flutter Explained](https://www.youtube.com/watch?v=v155UMfPM6k) by Flutter Explained on YouTube
+* [Flutter Tutorial - Detect App Background & App Closed - Widgets Binding](https://www.youtube.com/watch?v=JyapvlrmM24) by Johannes Milke on YouTube
 
 Contents:
 - [authapp](#authapp)
@@ -11,6 +12,7 @@ Contents:
   - [03. Workaround errors](#03-workaround-errors)
     - [Not supported on web build](#not-supported-on-web-build)
     - [Android permissions setup](#android-permissions-setup)
+    - [Detect and Lock on Background/Close](#detect-and-lock-on-backgroundclose)
 
 ![](img/2021-06-13-22-15-08.png)![](img/2021-06-13-22-15-20.png)![](img/2021-06-13-22-15-53.png)
 
@@ -110,3 +112,46 @@ class MainActivity: FlutterFragmentActivity() {
 
 If you still have problems, it is probably because you have not set your pin and fingerprint
 in the settings.
+
+### Detect and Lock on Background/Close
+
+App Lifecycle States:
+* Resumed (foreground)
+* Inactive (partially visible, but not focussed)
+* Paused (background)
+* Detached (app closed)
+
+To do something when the app is put in the background, or resumed, we can use:
+```dart
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsFlutterBinding.ensureInitialized().addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsFlutterBinding.ensureInitialized().removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.resumed) {
+      print('resmued');
+      //Navigator.popAndPushNamed(context, routeName)
+    }
+  }
+//...
+```
+
+And redirect the user to our lock screen
+
+
